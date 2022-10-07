@@ -43,7 +43,7 @@ class Kategori extends BaseController
 
     public function update($id)
     {
-        //select data kategori yang dipilih (filter by id)
+        //select data Kategori yang dipilih (filter by id)
         $data =  $this->KategoriModel->where('id', $id)->first();
         
         $output = [

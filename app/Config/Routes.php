@@ -49,11 +49,17 @@ $routes->get('/get_response/(:segment)', 'Form::get_response/$1');
 $routes->get('/kategori', 'Kategori::list');
 $routes->get('/kategori/insert', 'Kategori::insert');
 $routes->post('/kategori/insert', 'Kategori::insert_save');
+$routes->get('/kategori/(:segment)', 'Kategori::update/$1');
+$routes->post('/kategori/(:segment)', 'Kategori::update_save/$1');
+$routes->get('/kategori/delete/(:segment)', 'Kategori::delete/$1');
 
 //crud provinsi table
 $routes->get('/provinsi', 'Provinsi::list');
 $routes->get('/provinsi/insert', 'Provinsi::insert');
 $routes->post('/provinsi/insert', 'Provinsi::insert_save');
+$routes->get('/provinsi/(:segment)', 'Provinsi::update/$1');
+$routes->post('/provinsi/(:segment)', 'Provinsi::update_save/$1');
+$routes->get('/provinsi/delete/(:segment)', 'Provinsi::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

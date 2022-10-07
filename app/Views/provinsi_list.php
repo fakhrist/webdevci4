@@ -7,6 +7,7 @@
         <th>No</th>
         <th>Nama</th>
         <th>Wilayah</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,9 @@
           <td><?= $num++; ?></td>
           <td><?= $row['nama']; ?></td>
           <td><?= $row['wilayah']; ?></td>
+          <td>
+            <a href="<?= site_url('provinsi/'.$row['id']) ?>" >Update</a>
+          </td>
         </tr>
       <?php endforeach ?>
     </tbody>
