@@ -60,6 +60,14 @@ $routes->post('/provinsi/insert', 'Provinsi::insert_save');
 $routes->get('/provinsi/(:segment)', 'Provinsi::update/$1');
 $routes->post('/provinsi/(:segment)', 'Provinsi::update_save/$1');
 $routes->get('/provinsi/delete/(:segment)', 'Provinsi::delete/$1');
+
+//crud buku
+$routes->get('/buku', 'Buku::list');
+$routes->get('/buku/insert', 'Buku::insert');
+$routes->post('/buku/insert', 'Buku::insert_save');
+$routes->get('/buku/(:segment)', 'Buku::update/$1');
+$routes->post('/buku/(:segment)', 'Buku::update_save/$1');
+$routes->get('/buku/delete/(:segment)', 'Buku::delete/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
