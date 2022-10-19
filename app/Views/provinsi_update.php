@@ -26,14 +26,9 @@
     <tr>
       <td>&nbsp;</td>
       <td>
+        <a href="<?= site_url('provinsi/delete/'.$data['id']) ?>" onclick="return confirm('Anda Yakin menghapus datanya?')">[ Delete ]</a>
         <button type="submit">Save</button>
-        <a href="<?= site_url('provinsi/delete/'.$data['id']) ?>" 
-            onclick="return confirm('Anda yakin menghapus?')">
-            <button>Delete</button>
-        </a>
-        <a href="<?= site_url('provinsi/')?>">
-            <button>Cancel</button>
-        </a> 
+        <a href="<?= site_url('provinsi/')?>"><button>Cancel</button></a> 
       </td>
     </tr>
   </table>

@@ -69,6 +69,6 @@ class Kategori extends BaseController
     {   
         //delete data table kategori filter by id
         $this->KategoriModel->delete($id);
-        return redirect()->to('kategori');
+        return redirect()->to('kategori/');
     }
 }

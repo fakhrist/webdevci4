@@ -73,7 +73,7 @@ class Provinsi extends BaseController
     {   
         //delete data table provinsi filter by id
         $this->ProvinsiModel->delete($id);
-        return redirect()->to('provinsi');
+        return redirect()->to('provinsi/');
     }
 
 }

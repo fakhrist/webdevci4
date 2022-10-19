@@ -61,6 +61,14 @@ $routes->get('/provinsi/(:segment)', 'Provinsi::update/$1');
 $routes->post('/provinsi/(:segment)', 'Provinsi::update_save/$1');
 $routes->get('/provinsi/delete/(:segment)', 'Provinsi::delete/$1');
 
+//Tugas Besar
+$routes->get('/kota', 'Kota::list');
+$routes->get('/kota/insert', 'Kota::insert');
+$routes->post('/kota/insert', 'Kota::insert_save');
+$routes->get('/kota/(:segment)', 'Kota::update/$1');
+$routes->post('/kota/(:segment)', 'Kota::update_save/$1');
+$routes->get('/kota/delete/(:segment)', 'Kota::delete/$1');
+
 //crud buku
 $routes->get('/buku', 'Buku::list');
 $routes->get('/buku/insert', 'Buku::insert');
