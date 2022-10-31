@@ -76,6 +76,10 @@ $routes->post('/buku/insert', 'Buku::insert_save');
 $routes->get('/buku/(:segment)', 'Buku::update/$1');
 $routes->post('/buku/(:segment)', 'Buku::update_save/$1');
 $routes->get('/buku/delete/(:segment)', 'Buku::delete/$1');
+//Export PDF Excel
+$routes->get('/buku_export_xls', 'BukuExport::export_xls');
+$routes->get('/buku_export_pdf', 'BukuExport::export_pdf');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

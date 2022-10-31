@@ -15,7 +15,7 @@
     <tr>
       <td>Nama Kota</td>
       <td>
-        <input type="text" name="nama_kota" value="<?= $data['nama'] ?>" />                       
+        <input type="text" name="nama_kota" value="<?= $data['city'] ?>" />                       
       </td>
     </tr>
     <tr>

@@ -17,7 +17,7 @@ class Kota extends BaseController
     public function list()
     {
         //Query Data Kota
-        $list = $this->KotaModel->select('kota.id, kota.provinsi_id, kota.nama AS city, provinsi.nama AS prov, provinsi.wilayah')->join('provinsi','kota.provinsi_id = provinsi.id')->orderBy('kota.provinsi_id, kota.id')->findAll();
+        $list = $this->KotaModel->select('kota.id, kota.provinsi_id, kota.city AS city, provinsi.nama AS prov, provinsi.wilayah')->join('provinsi','kota.provinsi_id = provinsi.id')->orderBy('kota.provinsi_id, kota.id')->findAll();
 
         $output = [
             'list' => $list,
@@ -46,7 +46,7 @@ class Kota extends BaseController
         //insert data ke table buku
         $this->KotaModel->insert([
             'provinsi_id' => $prov,
-            'nama' => $kota,
+            'city' => $kota,
         ]);
 
         return redirect()->to('kota');
@@ -76,7 +76,7 @@ class Kota extends BaseController
         //update data ke table buku filter by id
         $this->KotaModel->update($id, [
             'provinsi_id' => $prov,
-            'nama' => $kota,
+            'city' => $kota,
         ]);
 
         return redirect()->to('kota/');
