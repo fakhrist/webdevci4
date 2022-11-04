@@ -1,0 +1,85 @@
+<?php
+namespace App\Controllers;
+
+//memanggil model
+use App\Models\KotaModel;
+use App\Models\ProvinsiModel;
+
+//memanggil package excel
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+//memanggil package pdf
+use Dompdf\Dompdf;
+
+class KotaExport extends BaseController
+{
+    public function __construct()
+    {
+        //load model untuk digunakan
+        $this->KotaModel = new KotaModel();
+        $this->ProvinsiModel = new ProvinsiModel();
+    }
+
+    function export_xls()
+    {
+        //select data from table buku
+        $list = $this->KotaModel->select('kota.id, kota.provinsi_id, kota.city AS city, provinsi.nama AS prov, provinsi.wilayah')->join('provinsi','kota.provinsi_id = provinsi.id')->orderBy('kota.provinsi_id, kota.id')->findAll();
+
+        //filename
+        $fileName = 'kota_export.xlsx';
+
+        //start package excel
+        $spreadsheet = new Spreadsheet();
+
+        //header
+        $sheet = $spreadsheet->getActiveSheet();
+        //(A1 : lokasi line & column excel, No : display data)
+        $sheet->setCellValue('A1', 'No')->getColumnDimension('A')->setAutoSize(true);
+        $sheet->setCellValue('B1', 'Kota')->getColumnDimension('B')->setAutoSize(true);
+        $sheet->setCellValue('C1', 'Provinsi')->getColumnDimension('C')->setAutoSize(true);
+        $sheet->setCellValue('D1', 'Wilayah')->getColumnDimension('D')->setAutoSize(true);
+
+        //body
+        $line = 2;
+        foreach ($list as $row) {
+            $sheet->setCellValue('A'.$line, $line-1);
+            $sheet->setCellValue('B'.$line, $row['city']);
+            $sheet->setCellValue('C'.$line, $row['prov']);
+            $sheet->setCellValue('D'.$line, $row['wilayah']);
+            $line++;
+        }
+
+        header("Content-Type: application/vnd.ms-excel");
+        header('Content-Disposition: attachment; filename="' . urlencode($fileName) . '"');
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+    }
+
+    function export_pdf()
+    {
+        //select data from table buku
+        $list = $this->KotaModel->select('kota.id, kota.provinsi_id, kota.city AS city, provinsi.nama AS prov, provinsi.wilayah')->join('provinsi','kota.provinsi_id = provinsi.id')->orderBy('kota.provinsi_id, kota.id')->findAll();
+
+        //filename
+        $fileName = 'kota_export';
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+
+        // load HTML content
+        $output = [
+            'list' => $list,
+        ];
+        $dompdf->loadHtml(view('kota_export_pdf', $output));
+
+        // (optional) setup the paper size and orientation
+        $dompdf->setPaper('A4', 'potrait');
+
+        // render html as PDF
+        $dompdf->render();
+
+        // output the generated pdf
+        $dompdf->stream($fileName);
+    }
+}

@@ -68,6 +68,9 @@ $routes->post('/kota/insert', 'Kota::insert_save');
 $routes->get('/kota/(:segment)', 'Kota::update/$1');
 $routes->post('/kota/(:segment)', 'Kota::update_save/$1');
 $routes->get('/kota/delete/(:segment)', 'Kota::delete/$1');
+//Export PDF Excel
+$routes->get('/kota_export_xls', 'KotaExport::export_xls');
+$routes->get('/kota_export_pdf', 'KotaExport::export_pdf');
 
 //crud buku
 $routes->get('/buku', 'Buku::list');
