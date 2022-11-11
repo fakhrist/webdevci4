@@ -85,6 +85,7 @@ $routes->get('/buku_export_pdf', 'BukuExport::export_pdf');
 
 //Grafik
 $routes->get('/chart/pie', 'Chart::pie');
+$routes->get('/chart/line', 'Chart::line');
 
 
 /*
