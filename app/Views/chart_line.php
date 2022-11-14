@@ -1,3 +1,8 @@
+<?= $this->extend('theme/index'); ?>
+<?= $this->section('content'); ?>
+
+<h1 class="h3 mb-4 text-gray-800">Grafik Jumlah Stok Buku</h1>
+
 <div id="chart"></div>
 
 
@@ -42,3 +47,4 @@
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 </script>
+<?= $this->endSection('content'); ?>

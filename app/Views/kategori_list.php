@@ -1,8 +1,12 @@
-<a href="<?= site_url('kategori/insert') ?>">Insert</a>
-<br />
+<?= $this->extend('theme/index'); ?>
+<?= $this->section('content'); ?>
 
-<table border="1">
-    <thead>
+<h1 class="h3 mb-4 text-gray-800">Daftar Kategori Buku</h1>
+
+<a href="<?= site_url('kategori/insert') ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Insert</a>
+<br /><br />
+<table class="table table-striped" id="dataTable">
+    <thead class="thead-dark">
       <tr>
         <th>No</th>
         <th>Nama</th>
@@ -16,9 +20,12 @@
           <td><?= $num++; ?></td>
           <td><?= $row['nama']; ?></td>
           <td nowrap>
-            <a href="<?= site_url('kategori/'.$row['id']) ?>" >Update</a>
-          </td>
+            <a href="<?= site_url('kategori/'.$row['id']) ?>" class="btn btn-info"><i class="fas fa-edit"></i> Update</a>
+            <a href="<?= site_url('kategori/delete/'.$row['id']) ?>" class="btn btn-danger" onclick="return confirm('Yakin bro?')"><i class="fas fa-trash"></i> Delete</a>
+          </td>          
         </tr>
       <?php endforeach ?>
     </tbody>
 </table>
+
+<?= $this->endSection('content'); ?>

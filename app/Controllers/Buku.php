@@ -17,7 +17,7 @@ class Buku extends BaseController
     public function list()
     {
         //select data from table buku
-        $list = $this->BukuModel->select('buku.id, buku.judul, kategori.nama AS kategori_nama')->join('kategori','buku.kategori_id = kategori.id')->orderBy('kategori.nama, judul')->findAll();
+        $list = $this->BukuModel->select('buku.id, buku.judul, buku.stok, kategori.nama AS kategori_nama')->join('kategori','buku.kategori_id = kategori.id')->orderBy('kategori.nama, judul')->findAll();
 
         $output = [
             'list' => $list,
@@ -42,11 +42,13 @@ class Buku extends BaseController
     {
         $kategori_id = $this->request->getVar('kategori_id');
         $judul = $this->request->getVar('judul');
+        $stock = $this->request->getVar('stock');
 
         //insert data ke table buku
         $this->BukuModel->insert([
             'kategori_id' => $kategori_id,
             'judul' => $judul,
+            'stok' => $stock,
         ]);
 
         return redirect()->to('buku');
